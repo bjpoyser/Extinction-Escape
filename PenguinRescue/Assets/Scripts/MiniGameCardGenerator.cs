@@ -22,10 +22,13 @@ public class MiniGameCardGenerator : MonoBehaviour
         for (int i = 0; i < tempMinigames.Length; i++)
         {
             _minigames.Add(tempMinigames[i]);
-            MiniGameCard card = Instantiate(_cardPrefab, _container);
-            card.Initialize(tempMinigames[i]);
         }
-
+        _minigames.Sort((a, b) => a.order.CompareTo(b.order));
+        for (int i = 0; i < _minigames.Count; i++)
+        {
+            MiniGameCard card = Instantiate(_cardPrefab, _container);
+            card.Initialize(_minigames[i]);
+        }
         Resources.UnloadUnusedAssets();
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7bff31b19f8444f87b848480818951, type: 3}
   m_Name: TurtleTrouble
   m_EditorClassIdentifier: 
+  order: 3
   GameName: Turtle Trouble
   SceneName: TurtleTrouble
   Description: 
