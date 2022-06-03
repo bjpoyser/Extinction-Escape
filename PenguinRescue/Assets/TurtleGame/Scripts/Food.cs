@@ -8,7 +8,7 @@ public class Food : MonoBehaviour
     {
         if (other.GetComponent<Turtle>())
         {
-            other.GetComponent<Turtle>().EatFood(25);
+            other.GetComponent<Turtle>().EatFood(10);
             Destroy(gameObject);
         }
 

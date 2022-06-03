@@ -6,11 +6,14 @@ public class SegmentSpawner : MonoBehaviour
 {
     [SerializeField] GameObject segment;
     public float speed = 3f;
+    public int numSegments = 0;
     GameObject lastObject;
+    bool endGame;
 
     public void SpawnTile()
-    {        
-        if(lastObject != null)
+    {
+        numSegments++;
+        if (lastObject != null)
         {
             GameObject temp = Instantiate(segment, lastObject.transform.GetChild(0).transform.position, Quaternion.identity);
             lastObject = temp;
@@ -20,10 +23,19 @@ public class SegmentSpawner : MonoBehaviour
             GameObject temp = Instantiate(segment, Vector3.zero, Quaternion.identity);
             lastObject = temp;
         }
+        lastObject.GetComponent<Segment>().segmentIndex = numSegments;
+        lastObject.GetComponent<Segment>().SpawnObstacle();
     }
     private void Update()
     {
-        speed += Time.deltaTime * 0.25f;
+        if(endGame == false)
+        {
+            speed += Time.deltaTime * 0.25f;
+        }
+        else
+        {
+            speed = 0;
+        }
     }
     private void Start()
     {
@@ -31,5 +43,9 @@ public class SegmentSpawner : MonoBehaviour
         {
             SpawnTile();
         }
+    }
+    public void EndGame()
+    {
+        endGame = true;
     }
 }
