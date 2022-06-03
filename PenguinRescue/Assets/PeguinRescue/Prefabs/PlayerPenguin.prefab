@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 8280435761623964244}
   - component: {fileID: 8280435761623964251}
   - component: {fileID: 8280435761623964246}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerPenguin
   m_TagString: Penguin
   m_Icon: {fileID: 0}

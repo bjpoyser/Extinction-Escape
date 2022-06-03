@@ -154,7 +154,6 @@ public class UIManager : MonoBehaviour
         }
 
         _gameOver.SetActive(true);
-
     }
 
     private void PlayAgain()
