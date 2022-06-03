@@ -7,6 +7,8 @@ TagManager:
   - Penguin
   - PenguinSpawner
   - BabyPenguin
+  - Beetle
+  - Dog
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - PostProcessing
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Prey
   - 
   - 
   - 

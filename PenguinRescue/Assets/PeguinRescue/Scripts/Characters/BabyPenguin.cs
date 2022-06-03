@@ -26,7 +26,6 @@ public class BabyPenguin : ChaseBehavior
     {
         _wasSaved = false;
         _player = null;
-
         PenguinGameManager.Instance.PenguinTrapped();
         Destroy(gameObject);
     }

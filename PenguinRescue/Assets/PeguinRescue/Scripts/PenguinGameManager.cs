@@ -98,7 +98,7 @@ public class PenguinGameManager : MonoBehaviour
     {
         if (_currentPenguinsSavedOrLost == _penguinsToSave)
         {
-            bool upgradeWave = _currentPenguinsSaved > _penguinsToSave / 2;
+            bool upgradeWave = _currentPenguinsSaved > Mathf.RoundToInt(_penguinsToSave / 2);
             if (upgradeWave) _currentWave++;
 
             _currentPenguinsSavedOrLost = 0;

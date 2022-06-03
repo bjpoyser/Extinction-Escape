@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 2503703504140758262}
   - component: {fileID: 2503703504140758263}
   - component: {fileID: 2503703504140758260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BabyPenguin
   m_TagString: BabyPenguin
   m_Icon: {fileID: 0}
@@ -982,7 +982,6 @@ MonoBehaviour:
   _speed: 20
   _chaseDistance: 3
   current: 0
-  yPos: 0
 --- !u!1 &2503703504212746208
 GameObject:
   m_ObjectHideFlags: 0
