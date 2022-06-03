@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 2b6fe4e74074a1f47b76d6dd26c7a5f0,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -153,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &16142391
 TerrainCollider:
@@ -526,7 +527,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -363, y: 88}
-  m_SizeDelta: {x: 609.1, y: 78.21}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &125138664
 MonoBehaviour:
@@ -666,6 +667,7 @@ Transform:
   m_LocalPosition: {x: 17.759237, y: 49.004395, z: 15.0764475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 334032543}
   - {fileID: 289219767}
   - {fileID: 1834496018}
   - {fileID: 594356443}
@@ -1418,7 +1420,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &289219768
 TerrainCollider:
@@ -1651,6 +1653,66 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &334032540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334032543}
+  - component: {fileID: 334032542}
+  - component: {fileID: 334032541}
+  m_Layer: 0
+  m_Name: PenguinKiller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &334032541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334032540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc945bf2d1a8044189019e0c85f5c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _orcaPrefab: {fileID: 585482083194714081, guid: f16aa4e14a825d04e9da1c76f22f594a,
+    type: 3}
+  _targetTags: 0000000001000000
+--- !u!65 &334032542
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334032540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 534.71, y: 2.5976114, z: 546.9}
+  m_Center: {x: 0, y: 2.0811944, z: 0}
+--- !u!4 &334032543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334032540}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.759237, y: -52.004395, z: 110.72356}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127292708}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &346377544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,7 +2334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &494573863
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2865,7 +2927,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561441594}
-  m_LocalRotation: {x: 0.29318282, y: -0.000000016450272, z: 0.0000000050446154, w: 0.9560564}
+  m_LocalRotation: {x: 0.29318282, y: 0.00000001645027, z: -0.000000005044615, w: 0.9560564}
   m_LocalPosition: {x: 51.37, y: 15.650001, z: -11.939999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3105,7 +3167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &594356444
 TerrainCollider:
@@ -3414,7 +3476,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678840231}
-  m_LocalRotation: {x: 0.29318282, y: -0.000000016450272, z: 0.0000000050446154, w: 0.9560564}
+  m_LocalRotation: {x: 0.29318282, y: 0.00000001645027, z: -0.000000005044615, w: 0.9560564}
   m_LocalPosition: {x: 51.37, y: 15.650001, z: -11.939999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3810,22 +3872,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Penguins are birds with flippers instead of wings
+  m_text: 'Penguins are birds with flippers instead of wings, that''s why they can''t
+    fly.
 
 
-    They cannot fly
-    but they can slide on their bellies
+    In the water they are expert swimmers and divers.
 
 
-    In the water they are expert swimmers
-    and divers
+    They feed
+    on small shrimp, fish, crabs and squid.
 
 
-    They feed on small shrimp, fish, crabs and squid
-
-
-    (World
-    Wild Life, n.d)'
+    (World Wild Life, n.d)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4713,7 +4771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &1025475340
 TerrainCollider:
@@ -4937,12 +4995,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"These species depend on sea ice for access to food and for places to
-    breed. But the sea ice has been disappearing due to climate change"
+  m_text: 'The sea ice has been disappearing due to climate change, reducing their
+    access to food and places to breed.
 
 
-    (World
-    Wild Life, n.d)'
+    (World Wild Life, n.d)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5291,12 +5348,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Commercial fishing in the Southern Ocean region can force many penguin
-    species to compete for the fish they eat. The practice can also lead to accidental
-    capture and drowning in fishing nets"
-
-
-    (World Wild Life, n.d)'
+  m_text: "\rCommercial fishing can force many penguin species to compete for the
+    fish they eat.\r\n\r\nSometimes they are accidentally caught and drown in fishing
+    nets.\n\n(World Wild Life, n.d)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5622,7 +5676,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &1312470087
 TerrainCollider:
@@ -6018,19 +6072,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Help baby penguins to reach a save zone before the predators capture them
-    first.
+  m_text: 'Help the penguins!
 
 
-    Every time you save a group of baby penguins, more will appear in
-    the island
-
-
-    Save as much as you can before the Island disapear
-
-
-    Good
-    Luck!'
+    www.globalpenguinsociety.org'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17317,7 +17362,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &1702191000
 TerrainCollider:
@@ -17399,7 +17444,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000030518, y: 92}
-  m_SizeDelta: {x: 1298.17, y: 512.55}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704007174
 MonoBehaviour:
@@ -17435,7 +17480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome \nTo \nPenguin Rescue!"
+  m_text: "Welcome \nTo \nPenguin Panic!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17686,7 +17731,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &1724401715
 TerrainCollider:
@@ -18136,7 +18181,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &1834496019
 TerrainCollider:
@@ -19011,7 +19056,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 127292708}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &1950892157
 TerrainCollider:

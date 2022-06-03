@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    private const string SHOW_INTRO = "show_penguins_intro";
+
     [Header("Buttons")]
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _settingsButton;
@@ -21,6 +23,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        PlayerPrefs.SetInt(SHOW_INTRO, 1);
+
         _playButton.onClick.AddListener(OnPlayButtonPressed);
         _settingsButton.onClick.AddListener(OnSettingsButtonPressed);
         _creditsButton.onClick.AddListener(OnCreditsButtonPressed);

@@ -15,4 +15,12 @@ MonoBehaviour:
   order: 1
   GameName: Penguin Panic
   SceneName: PenguinPanic
-  Description: fasdfasdfasdfasdfhasdjfjklhsadfjkhsadjkfhjkadshfjadhsffasdfasdfasdfasdfhasdjfjklhsadfjkhsadjkfhjkadshfjadhsffasdfasdfasdfasdfhasdjfjklhsadfjkhsadjkfhjkadshfjadhsffasdfasdfasdfasdfhasdjfjklhsadfjkhsadjkfhjkadshfjadhsffasdfasdfasdfasdfhasdjfjklhsadfjkhsadjkfhjkadshfjadhsffasdfasdfasdfasdfhasdjfjklhsadfjkhsadjkfhjkadshfjadhsf
+  Description: 'Help baby penguins to reach a save zone before the predators capture
+    them.
+
+
+    Every time you save a group of baby penguins, more will appear in
+    the island
+
+
+    Save as much as you can before the Island disapear'
