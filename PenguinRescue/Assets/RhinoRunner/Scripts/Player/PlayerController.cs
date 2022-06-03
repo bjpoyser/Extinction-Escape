@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void PauseInput()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             bool pause = !GameManager.Instance.b_gameActive;
             bool isValid = StateComparitor(GameStateMachine.Instance.gameState);
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
                     GameManager.Instance.PauseGame();
                 }
             }
-        }
+        }*/
     }
 
     bool StateComparitor(GameState _currState)

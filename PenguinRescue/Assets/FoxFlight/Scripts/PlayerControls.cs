@@ -10,6 +10,8 @@ public class PlayerControls : MonoBehaviour
     public bool isGrounded;
     Rigidbody rb;
 
+    private bool _isPaused;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -20,6 +22,7 @@ public class PlayerControls : MonoBehaviour
     {
         isGrounded = true;
     }
+
     private void Update()
     {
         if(Input.GetButtonDown("Jump") && isGrounded)
@@ -27,5 +30,20 @@ public class PlayerControls : MonoBehaviour
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause(!_isPaused);
+            if (_isPaused) PauseMenu.Instance.Show(() => { Pause(!_isPaused); });
+            else PauseMenu.Instance.Hide();
+        }
+    }
+
+    public void Pause(bool pPause)
+    {
+        if (pPause) Time.timeScale = 0f;
+        else Time.timeScale = 1f;
+
+        _isPaused = pPause;
     }
 }

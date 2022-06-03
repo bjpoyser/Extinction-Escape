@@ -15,4 +15,6 @@ MonoBehaviour:
   order: 3
   GameName: Turtle Trouble
   SceneName: TurtleTrouble
-  Description: 
+  Description: The sea turtle is trying to swim ashore and lay their eggs. There
+    are many dangers along the way such as fishing equipment, garbage, and natural
+    predators.

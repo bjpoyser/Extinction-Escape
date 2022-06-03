@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     string winScene;
     string loseScene;
 
+    private bool _isPaused;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,11 @@ public class GameManager : MonoBehaviour
         b_gameActive = StateComparitor(state);
 
         CondtionComparitor(state);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
     }
 
     private void FixedUpdate()
@@ -101,12 +108,14 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Pause Game")]
     public void PauseGame()
     {
+        PauseMenu.Instance.Show(() => { ResumeGame(); });
         GameStateMachine.Instance.ChangeGameState(GameState.pause);
     }
 
     [ContextMenu("Resume Game")]
     public void ResumeGame()
     {
+        PauseMenu.Instance.Hide();
         GameStateMachine.Instance.ChangeGameState(GameState.play);
     }
 

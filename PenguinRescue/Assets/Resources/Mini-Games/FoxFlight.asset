@@ -15,4 +15,5 @@ MonoBehaviour:
   order: 2
   GameName: Fox Flight
   SceneName: FoxFlight
-  Description: 
+  Description: Feral dogs are on the hunt for food. The small Darwin's Fox must make
+    it to their den while avoiding the dogs.

@@ -20,6 +20,7 @@ public class Turtle : MonoBehaviour
     float hunger = 100;
     bool invertedUp;
     Vector2 movement;
+    private bool _isPaused;
 
     private void Update()
     {
@@ -58,6 +59,21 @@ public class Turtle : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause(!_isPaused);
+            if (_isPaused) PauseMenu.Instance.Show(() => { Pause(!_isPaused); });
+            else PauseMenu.Instance.Hide();
+        }
+    }
+
+    public void Pause(bool pPause)
+    {
+        if (pPause) Time.timeScale = 0f;
+        else Time.timeScale = 1f;
+
+        _isPaused = pPause;
     }
     public void TakeDamage(int damage)
     {

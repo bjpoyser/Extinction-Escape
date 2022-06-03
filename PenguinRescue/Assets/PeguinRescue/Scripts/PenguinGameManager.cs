@@ -61,9 +61,11 @@ public class PenguinGameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause(!_isPaused);
+            if (_isPaused) PauseMenu.Instance.Show(() => { Pause(!_isPaused); });
+            else PauseMenu.Instance.Hide();
         }
     }
 
