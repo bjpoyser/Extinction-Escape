@@ -13,6 +13,7 @@ public class Turtle : MonoBehaviour
     public Slider healthbar;
     public SegmentSpawner spawner;
     public TextMeshProUGUI scoreText;
+    public TurtleGameOver endGame;
     float moveSpeed = 5f;
     float multiplier = 1f;
     float score = 0;
@@ -21,43 +22,56 @@ public class Turtle : MonoBehaviour
     bool invertedUp;
     Vector2 movement;
     private bool _isPaused;
+    bool gameOver = false;
 
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (!gameOver)
         {
-            invertedUp = !invertedUp;
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                invertedUp = !invertedUp;
+            }
+
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical") * (invertedUp ? -1 : 1);
+            movement.Normalize();
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                moveSpeed = 12f;
+            }
+            else
+            {
+                moveSpeed = 6f;
+            }
+
+            //x move is y rotation
+            //y move is -x rotation
+            turtleBody.transform.rotation = Quaternion.Slerp(turtleBody.transform.rotation, Quaternion.Euler((-rb.velocity.y * 5) / (Mathf.Clamp(spawner.speed, 0, 12) / 3f), (rb.velocity.x * 5) / (Mathf.Clamp(spawner.speed, 0, 12) / 3f), 0), Time.deltaTime * 8);
+            hunger -= Time.deltaTime * 4f;
+            hunger = Mathf.Clamp(hunger, 0, 100);
+            health = Mathf.Clamp(health, 0, 100);
+
+            healthbar.value = health;
+            hungerbar.value = hunger;
+
+            score += Time.deltaTime * moveSpeed * multiplier;
+            scoreText.text = "SCORE : " + (int)score;
         }
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical") * (invertedUp ? -1 : 1);
-        movement.Normalize();
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            moveSpeed = 12f;
-        }
-        else
-        {
-            moveSpeed = 6f;
-        }
-
-        //x move is y rotation
-        //y move is -x rotation
-        turtleBody.transform.rotation = Quaternion.Slerp(turtleBody.transform.rotation, Quaternion.Euler((-rb.velocity.y * 5) / (Mathf.Clamp(spawner.speed, 0, 12) /3f), (rb.velocity.x * 5) / (Mathf.Clamp(spawner.speed, 0, 12) / 3f), 0), Time.deltaTime * 8);
-        hunger -= Time.deltaTime;
-        hunger = Mathf.Clamp(hunger, 0, 100);
-        health = Mathf.Clamp(health, 0, 100);
-
-        healthbar.value = health;
-        hungerbar.value = hunger;
-
-        score += Time.deltaTime * moveSpeed * multiplier;
-        scoreText.text = "SCORE : " + (int)score;
 
         if(hunger <= 0 || health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            gameOver = true;
+            hunger = 100;
+            health = 100;
+            spawner.EndGame();
+            endGame.GameOver((int)score);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

@@ -7,11 +7,11 @@ public class Segment : MonoBehaviour
     public GameObject obstaclePrefab;
     public GameObject foodPrefab;
     SegmentSpawner segmentSpawner;
+    public int segmentIndex = 0;
 
-    private void Start()
+    private void Awake()
     {
         segmentSpawner = FindObjectOfType<SegmentSpawner>();
-        SpawnObstacle();
     }
     private void OnTriggerExit(Collider other)
     {
@@ -25,19 +25,25 @@ public class Segment : MonoBehaviour
     {
         transform.Translate(-Vector3.forward * segmentSpawner.speed * Time.deltaTime);
     }
-    void SpawnObstacle()
+    public void SpawnObstacle()
     {
-        int obstacleSpawnIndex = Random.Range(1,10);
+        int obstacleSpawnIndex = Random.Range(1, 10);
         Transform spawnPoint = transform.GetChild(obstacleSpawnIndex).transform;
-
-        int foodChance = Random.Range(0, 2);
-        if(foodChance == 1)
+        if (segmentSpawner.numSegments > 3)
         {
-            Instantiate(foodPrefab, spawnPoint.position, Quaternion.identity, transform);
+            int foodChance = Random.Range(0, 2);
+            if (foodChance == 1)
+            {
+                Instantiate(foodPrefab, spawnPoint.position, Quaternion.identity, transform);
+            }
+            else
+            {
+                Instantiate(obstaclePrefab, spawnPoint.position, Quaternion.identity, transform);
+            }
         }
         else
         {
-            Instantiate(obstaclePrefab, spawnPoint.position, Quaternion.identity, transform);
+            Instantiate(foodPrefab, spawnPoint.position, Quaternion.identity, transform);
         }
     }
 }
