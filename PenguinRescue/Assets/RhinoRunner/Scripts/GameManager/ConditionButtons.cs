@@ -15,6 +15,11 @@ public class ConditionButtons : MonoBehaviour
         SceneManager.LoadScene("RhinoRunner_Metrics");
     }
 
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void QuitButton()
     {
         Application.Quit();
