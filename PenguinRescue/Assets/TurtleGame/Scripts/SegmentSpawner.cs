@@ -23,7 +23,7 @@ public class SegmentSpawner : MonoBehaviour
     }
     private void Update()
     {
-        speed += Time.deltaTime * 0.5f;
+        speed += Time.deltaTime * 0.25f;
     }
     private void Start()
     {

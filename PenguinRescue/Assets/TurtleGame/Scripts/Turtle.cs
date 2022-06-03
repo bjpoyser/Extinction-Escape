@@ -18,27 +18,32 @@ public class Turtle : MonoBehaviour
     float score = 0;
     float health = 100;
     float hunger = 100;
+    bool invertedUp;
     Vector2 movement;
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            invertedUp = !invertedUp;
+        }
+
         movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = -Input.GetAxisRaw("Vertical");
+        movement.y = Input.GetAxisRaw("Vertical") * (invertedUp ? -1 : 1);
         movement.Normalize();
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveSpeed = 9f;
+            moveSpeed = 12f;
         }
         else
         {
-            moveSpeed = 5f;
+            moveSpeed = 6f;
         }
 
         //x move is y rotation
         //y move is -x rotation
-        turtleBody.transform.rotation = Quaternion.Slerp(turtleBody.transform.rotation, Quaternion.Euler((-rb.velocity.y * 5) / (spawner.speed /5f), (rb.velocity.x * 5) / (spawner.speed/5f), 0), Time.deltaTime * 8);
-
+        turtleBody.transform.rotation = Quaternion.Slerp(turtleBody.transform.rotation, Quaternion.Euler((-rb.velocity.y * 5) / (Mathf.Clamp(spawner.speed, 0, 12) /3f), (rb.velocity.x * 5) / (Mathf.Clamp(spawner.speed, 0, 12) / 3f), 0), Time.deltaTime * 8);
         hunger -= Time.deltaTime;
         hunger = Mathf.Clamp(hunger, 0, 100);
         health = Mathf.Clamp(health, 0, 100);
