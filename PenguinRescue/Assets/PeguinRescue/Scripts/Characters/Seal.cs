@@ -29,9 +29,11 @@ public class Seal : MonoBehaviour
 
     private void Awake()
     {
-        _canMove = true;
+        _canMove = false;
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+
+        StartCoroutine(WaitToStartAgain(5));
     }
 
     private void Update()
@@ -157,13 +159,13 @@ public class Seal : MonoBehaviour
 
     public void EnableMovement()
     {
-        StartCoroutine(WaitToStartAgain());
+        StartCoroutine(WaitToStartAgain(2));
     }
 
-    IEnumerator WaitToStartAgain()
+    IEnumerator WaitToStartAgain(float pTime)
     {
         _animator.SetBool("IsIdle", true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(pTime);
         _canMove = true;
         yield return null;
         _animator.SetBool("IsIdle", false);
