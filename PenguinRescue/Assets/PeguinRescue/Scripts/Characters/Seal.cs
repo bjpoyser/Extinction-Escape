@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static Constants;
 
 public class Seal : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class Seal : MonoBehaviour
 
     private NavMeshAgent _agent;
     private Animator _animator;
-    private Transform _target;
+    [SerializeField] private Transform _target;
 
     private Vector3 _walkPoint;
     private bool _walkPoinSet;
@@ -26,6 +27,9 @@ public class Seal : MonoBehaviour
     private bool _inAttackRange;
     private bool _inChaseRange;
     private bool _canMove;
+
+    PenguinController tempPlayer;
+    BabyPenguin tempBabyPenguin;
 
     private void Awake()
     {
@@ -42,28 +46,6 @@ public class Seal : MonoBehaviour
         {
             _inAttackRange = Physics.CheckSphere(transform.position, attackRange, _prey);
             _inChaseRange = Physics.CheckSphere(transform.position, chaseRange, _prey);
-
-            if (_target == null || !_inChaseRange)
-            {
-                _target = null;
-                var hits = Physics.SphereCastAll(transform.position, chaseRange, transform.forward, chaseRange, _prey);
-                for (int i = 0; i < hits.Length; i++)
-                {
-                    BabyPenguin babyPenguin = hits[i].transform.GetComponent<BabyPenguin>();
-                    if (babyPenguin != null && !babyPenguin.WasCaptured)
-                    {
-                        _target = babyPenguin.transform;
-                    }
-                    else
-                    {
-                        PenguinController playerPenguin = hits[i].transform.GetComponent<PenguinController>();
-                        if (playerPenguin != null && !playerPenguin.WasCaptured)
-                        {
-                            _target = playerPenguin.transform;
-                        }
-                    }
-                }
-            }
 
             if (!_inChaseRange && !_inAttackRange) Patrol();
             if (_inChaseRange && !_inAttackRange) Chase();
@@ -98,6 +80,8 @@ public class Seal : MonoBehaviour
 
     private void Chase()
     {
+        CheckTarget(chaseRange);
+
         if (_target != null)
         {
             _agent.speed = _chaseSpeed;
@@ -105,38 +89,57 @@ public class Seal : MonoBehaviour
         }
     }
 
-    public void Attack()
+    private void CheckTarget(float pRange)
     {
-        _agent.SetDestination(transform.position);
-        if (_target != null)
+        var hits = Physics.SphereCastAll(transform.position, chaseRange, transform.forward, pRange, _prey);
+        _target = hits[0].transform;
+
+        for (int i = 0; i < hits.Length; i++)
         {
-            _canMove = false;
-            transform.LookAt(_target);
-            _animator.SetTrigger("Attack");
-            PenguinController playerPenguin = _target.GetComponent<PenguinController>();
-            if (playerPenguin != null && !playerPenguin.WasCaptured)
+            if (hits[i].transform.CompareTag(GameTags.BabyPenguin.ToString()))
             {
-                playerPenguin.CanMove = false;
-                playerPenguin.WasCaptured = true;
-                tempBabyPenguin = null;
-                tempPlayer = playerPenguin;
-            }
-            else
-            {
-                BabyPenguin babyPenguin = _target.GetComponent<BabyPenguin>();
-                if (babyPenguin != null && !babyPenguin.WasCaptured)
-                {
-                    babyPenguin.CanMove = false;
-                    babyPenguin.WasCaptured = true;
-                    tempBabyPenguin = babyPenguin;
-                    tempPlayer = null;
-                }
+                _target = hits[i].transform;
+                return;
             }
         }
     }
 
-    PenguinController tempPlayer;
-    BabyPenguin tempBabyPenguin;
+    public void Attack()
+    {
+        CheckTarget(attackRange);
+        _agent.SetDestination(transform.position);
+
+        if (_target != null)
+        {
+            if (_target.CompareTag(GameTags.BabyPenguin.ToString()))
+            {
+                BabyPenguin babyPenguin = _target.GetComponent<BabyPenguin>();
+                babyPenguin.CanMove = false;
+                babyPenguin.WasCaptured = true;
+                tempPlayer = null;
+                tempBabyPenguin = babyPenguin;
+            }
+            else if (_target.CompareTag(GameTags.Penguin.ToString()))
+            {
+                PenguinController playerPenguin = _target.GetComponent<PenguinController>();
+                if (playerPenguin != null && !playerPenguin.WasCaptured)
+                {
+                    playerPenguin.CanMove = false;
+                    playerPenguin.WasCaptured = true;
+                    tempBabyPenguin = null;
+                    tempPlayer = playerPenguin;
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            _canMove = false;
+            transform.LookAt(_target);
+            _animator.SetTrigger("Attack");
+        }
+    }
 
     public void KillTarget()
     {
@@ -162,8 +165,9 @@ public class Seal : MonoBehaviour
         StartCoroutine(WaitToStartAgain(2));
     }
 
-    IEnumerator WaitToStartAgain(float pTime)
+    public IEnumerator WaitToStartAgain(float pTime)
     {
+        _canMove = false;
         _animator.SetBool("IsIdle", true);
         yield return new WaitForSeconds(pTime);
         _canMove = true;

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Constants
 {
-    public enum TargetTags
+    public enum GameTags
     {
         Penguin,
         BabyPenguin,
-        PenguinSpawner
+        PenguinSpawner,
+        SeaLeopard
     }
 }

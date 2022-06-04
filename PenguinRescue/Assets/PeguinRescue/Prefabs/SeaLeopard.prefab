@@ -1009,8 +1009,8 @@ GameObject:
   - component: {fileID: 2331271942734524522}
   - component: {fileID: 7708862786990074667}
   m_Layer: 0
-  m_Name: Seal
-  m_TagString: Untagged
+  m_Name: SeaLeopard
+  m_TagString: SeaLeopard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1077,6 +1077,7 @@ MonoBehaviour:
   _walkPointRange: 5
   _chaseSpeed: 10
   _patrolSpeed: 5
+  _target: {fileID: 0}
 --- !u!95 &7708862786990074667
 Animator:
   serializedVersion: 3

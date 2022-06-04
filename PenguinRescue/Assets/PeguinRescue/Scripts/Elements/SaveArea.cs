@@ -5,7 +5,7 @@ using static Constants;
 
 public class SaveArea : MonoBehaviour
 {
-    [SerializeField] private TargetTags _targetTag;
+    [SerializeField] private GameTags _targetTag;
 
     private void OnTriggerEnter(Collider other)
     {

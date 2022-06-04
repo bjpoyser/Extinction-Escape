@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PenguinPanic
   m_EditorClassIdentifier: 
   order: 1
+  show: 1
   GameName: Penguin Panic
   SceneName: PenguinPanic
   Description: 'Help baby penguins to reach a save zone before the predators capture

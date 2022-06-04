@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Constants;
 
 public class PenguinGameManager : MonoBehaviour
 {
     #region Inspector Variables
     [SerializeField] private Camera _currentCamera;
-    [SerializeField] private int _lives;
     #endregion
 
     #region Private Variables
@@ -17,14 +17,16 @@ public class PenguinGameManager : MonoBehaviour
 
     private int _currentWave;
 
+    private int _lives;
     private int _penguinsToSave;
     private int _currentPenguinsSavedOrLost;
     private int _currentPenguinsSaved;
-    private int _currentPenguinsLost;
 
     private int _totalPenguinsSaved;
     private int _totalPenguinsSpawned;
     private int _totalPenguinLost;
+
+    [SerializeField] private List<Seal> _seals = new List<Seal>();
     #endregion
 
     #region Properties
@@ -35,6 +37,7 @@ public class PenguinGameManager : MonoBehaviour
     public int TotalPenguinsSaved { get => _totalPenguinsSaved; set => _totalPenguinsSaved = value; }
     public int TotalPenguinLost { get => _totalPenguinLost; set => _totalPenguinLost = value; }
     public int TotalPenguinsSpawned { get => _totalPenguinsSpawned; set => _totalPenguinsSpawned = value; }
+    public int Lives { get => _lives; set => _lives = value; }
     #endregion
 
     #region Methods
@@ -57,6 +60,16 @@ public class PenguinGameManager : MonoBehaviour
         _totalPenguinsSaved = 0;
 
         SpawnerManager.Instance.SpawnNextWave(_currentWave);
+
+
+        
+
+        _seals.Clear();
+        var sealsInScene = GameObject.FindGameObjectsWithTag(GameTags.SeaLeopard.ToString());
+        for (int i = 0; i < sealsInScene.Length; i++)
+        {
+            _seals.Add(sealsInScene[i].GetComponent<Seal>());
+        }
     }
 
     void Update()
@@ -98,8 +111,19 @@ public class PenguinGameManager : MonoBehaviour
 
     private void CheckWave()
     {
+        if (_lives == 0)
+        {
+            GameOver(0);
+            return;
+        }
+
         if (_currentPenguinsSavedOrLost == _penguinsToSave)
         {
+            for (int i = 0; i < _seals.Count; i++)
+            {
+                StartCoroutine(_seals[i].WaitToStartAgain(5));
+            }
+
             bool upgradeWave = _currentPenguinsSaved > Mathf.RoundToInt(_penguinsToSave / 2);
             if (upgradeWave) _currentWave++;
 
@@ -110,13 +134,19 @@ public class PenguinGameManager : MonoBehaviour
             SpawnerManager.Instance.SpawnNextWave(_currentWave);
             if (PenguinsToSave == 0)
             {
-                GameOver();
+                GameOver(0);
             }
         }
     }
 
-    public void GameOver()
+    public void GameOver(float pSeconds)
     {
+        StartCoroutine(WaitToGameOver(pSeconds));
+    }
+
+    IEnumerator WaitToGameOver(float pSeconds)
+    {
+        yield return new WaitForSeconds(pSeconds);
         Pause(true);
         UIManager.Instance.ShowGameOver();
     }

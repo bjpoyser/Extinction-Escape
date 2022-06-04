@@ -91,6 +91,8 @@ public class UIManager : MonoBehaviour
         {
             _lives[i].SetActive(true);
         }
+
+        PenguinGameManager.Instance.Lives = currentLives;
     }
 
     public void UpdateSaved(int pSaved)

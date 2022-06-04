@@ -6,6 +6,7 @@ using UnityEngine;
 public class MiniGameScriptableObject : ScriptableObject
 {
     public int order;
+    public bool show;
     public string GameName;
     public string SceneName;
     [TextArea(3, 8)] public string Description;

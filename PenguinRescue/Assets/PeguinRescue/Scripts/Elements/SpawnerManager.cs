@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnerManager : MonoBehaviour
 {
     #region Inspector Variables
-    [SerializeField] private List<PenguinSpawner> _spawns = new List<PenguinSpawner>();
+    [SerializeField] PenguinSpawner[] _spawns;
     #endregion
 
     #region Private Variables
@@ -27,6 +27,8 @@ public class SpawnerManager : MonoBehaviour
         {
             _instance = this;
         }
+
+        _spawns = transform.GetComponentsInChildren<PenguinSpawner>();
     }
 
     public void SpawnNextWave(int pSpawnersNeeded)
@@ -46,9 +48,9 @@ public class SpawnerManager : MonoBehaviour
     private PenguinSpawner GetSpawner()
     {
         List<PenguinSpawner> availableSpawners = new List<PenguinSpawner>();
-        for (int i = 0; i < _spawns.Count; i++)
+        for (int i = 0; i < _spawns.Length; i++)
         {
-            if (_spawns[i].IsEnabled && _spawns[i].BabySpawned == null)
+            if (_spawns[i].IsEnabled && !_spawns[i].IsSeaLeaopardNearby && _spawns[i].BabySpawned == null)
             {
                 availableSpawners.Add(_spawns[i]);
             }

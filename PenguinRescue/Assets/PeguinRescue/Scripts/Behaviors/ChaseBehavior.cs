@@ -25,6 +25,11 @@ public class ChaseBehavior : MonoBehaviour
 
     void Start()
     {
+        Initialize();
+    }
+
+    protected virtual void Initialize()
+    {
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
 
@@ -44,6 +49,7 @@ public class ChaseBehavior : MonoBehaviour
         if (player != null && !_wasSaved)
         {
             _player = player;
+            OnFollowingPlayer();
         }
     }
 
@@ -73,6 +79,8 @@ public class ChaseBehavior : MonoBehaviour
     }
 
     protected virtual void PlayerReached(){ }
+
+    protected virtual void OnFollowingPlayer(){ }
 
     protected virtual void SetIdle()
     {

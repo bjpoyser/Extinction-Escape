@@ -6,7 +6,7 @@ using static Constants;
 public class KillerFloor : MonoBehaviour
 {
     [SerializeField] private Orca _orcaPrefab;
-    [SerializeField] private TargetTags[] _targetTags;
+    [SerializeField] private GameTags[] _targetTags;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,7 +17,7 @@ public class KillerFloor : MonoBehaviour
 
                 switch (_targetTags[i])
                 {
-                    case TargetTags.Penguin:
+                    case GameTags.Penguin:
                         {
                             PenguinController playerPenguin = other.GetComponent<PenguinController>();
                             if (playerPenguin != null && !playerPenguin.WasCaptured)
@@ -30,7 +30,7 @@ public class KillerFloor : MonoBehaviour
                             break;
                         }
 
-                    case TargetTags.BabyPenguin:
+                    case GameTags.BabyPenguin:
                         {
                             BabyPenguin babyPenguin = other.GetComponent<BabyPenguin>();
                             if (babyPenguin != null && !babyPenguin.WasCaptured)
@@ -43,7 +43,7 @@ public class KillerFloor : MonoBehaviour
                             break;
                         }
 
-                    case TargetTags.PenguinSpawner:
+                    case GameTags.PenguinSpawner:
                         {
                             PenguinSpawner spawner = other.GetComponent<PenguinSpawner>();
                             if (spawner != null)

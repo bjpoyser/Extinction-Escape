@@ -22,6 +22,8 @@ public class PenguinController : MonoBehaviour
     #endregion
 
     #region Private Variables
+    private static PenguinController _instance;
+
     private Rigidbody _rigidbody;
     private Animator _animator;
 
@@ -42,11 +44,23 @@ public class PenguinController : MonoBehaviour
     public bool IsIdle { get => _isIdle; set => _isIdle = value; }
     public bool CanMove { get => _canMove; set => _canMove = value; }
     public bool WasCaptured { get => _wasCaptured; set => _wasCaptured = value; }
+    public static PenguinController Instance { get => _instance; set => _instance = value; }
     #endregion
 
     #region Methods
     private void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
+        }
+
+        _instance = this;
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
     }
@@ -126,7 +140,7 @@ public class PenguinController : MonoBehaviour
 
     public void Trapped()
     {
-        PenguinGameManager.Instance.GameOver();
+        PenguinGameManager.Instance.GameOver(2);
         Destroy(gameObject);
     }
     #endregion

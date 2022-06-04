@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: RhinoRunner
   m_EditorClassIdentifier: 
   order: 0
+  show: 1
   GameName: Rhino Runner
   SceneName: RhinoRunner_Metrics
-  Description: Poachers are approaching the hiding place of a baby rhino, it is up
-    to Mama and Papa Rhino to race to the rescue knocking out poachers along the
-    way.
+  Description: 'Poachers are approaching the hiding place of a baby rhino, it is
+    up to Mama and Papa Rhino to race to the rescue knocking out poachers along the
+    way '

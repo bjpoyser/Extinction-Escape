@@ -45,6 +45,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Show(Action pCallback)
     {
+        Cursor.lockState = CursorLockMode.None;
         _content.SetActive(true);
         _action = pCallback;
         _resume.onClick.AddListener(Resume);
@@ -58,6 +59,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         _action?.Invoke();
         Hide();
     }

@@ -21,7 +21,7 @@ public class MiniGameCardGenerator : MonoBehaviour
         var tempMinigames = Resources.LoadAll<MiniGameScriptableObject>(MINIGAMES_FOLDER_ROUTE);
         for (int i = 0; i < tempMinigames.Length; i++)
         {
-            _minigames.Add(tempMinigames[i]);
+            if(tempMinigames[i].show) _minigames.Add(tempMinigames[i]);
         }
         _minigames.Sort((a, b) => a.order.CompareTo(b.order));
         for (int i = 0; i < _minigames.Count; i++)

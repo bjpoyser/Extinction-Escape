@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: TurtleTrouble
   m_EditorClassIdentifier: 
   order: 3
+  show: 1
   GameName: Turtle Trouble
   SceneName: TurtleTrouble
-  Description: The sea turtle is trying to swim ashore and lay their eggs. There
-    are many dangers along the way such as fishing equipment, garbage, and natural
-    predators.
+  Description: The player is a sea turtle trying to swim ashore and lay their eggs.
+    There are many dangers along the way such as fishing equipment, garbage, and
+    natural predators. You must eat food along the way to survive the treacherous
+    journey.

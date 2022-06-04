@@ -7,11 +7,11 @@ public class EatTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(TargetTags.Penguin.ToString()))
+        if(other.CompareTag(GameTags.Penguin.ToString()))
         {
             other.GetComponent<PenguinController>().Trapped();
         }
-        else if (other.CompareTag(TargetTags.BabyPenguin.ToString()))
+        else if (other.CompareTag(GameTags.BabyPenguin.ToString()))
         {
             other.GetComponent<BabyPenguin>().Trapped();
         }
