@@ -6,6 +6,7 @@ public class PlayerMotor : MonoBehaviour
 {
     Vector3 velocity;
     public float speed;
+    [SerializeField] float speedMultiple;
     CharacterController charCon;
 
     private void Awake()
@@ -24,8 +25,8 @@ public class PlayerMotor : MonoBehaviour
 
     public void MovementVelocity(Vector3 moveDelta)
     {
-        moveDelta += transform.forward * speed;
-        velocity = moveDelta * speed * Time.fixedDeltaTime;
+        //moveDelta += transform.forward * (speed * speedMultiple);
+        velocity = moveDelta * (speed * speedMultiple) * Time.fixedDeltaTime;
     }
 
     void PerformMovement()
