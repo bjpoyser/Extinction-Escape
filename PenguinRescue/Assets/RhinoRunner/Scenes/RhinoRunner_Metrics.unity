@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segment: {fileID: 6520533735984939059, guid: 4b3c2080932c2364cb78511b00a973ea, type: 3}
-  speed: 7
+  speed: 2
   numSegments: 0
 --- !u!4 &1312482402
 Transform:
@@ -808,7 +808,7 @@ PrefabInstance:
     - target: {fileID: 3718345394731041717, guid: d5645d17fd5c72a468a4662b364d747d,
         type: 3}
       propertyPath: speed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3718345394731041718, guid: d5645d17fd5c72a468a4662b364d747d,
         type: 3}

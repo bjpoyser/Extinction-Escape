@@ -20,6 +20,12 @@ public class Segment : MonoBehaviour
             segmentSpawner.SpawnTile();
             Destroy(gameObject, 2);
         }
+
+        if (other.tag == "Player")
+        {
+            segmentSpawner.SpawnTile();
+            Destroy(gameObject, 2);
+        }
     }
     private void Update()
     {
