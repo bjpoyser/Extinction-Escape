@@ -15,13 +15,7 @@ public class Segment : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Turtle>())
-        {
-            segmentSpawner.SpawnTile();
-            Destroy(gameObject, 2);
-        }
-
-        if (other.tag == "Player")
+        if (other.GetComponent<Turtle>() || other.tag == "Player")
         {
             segmentSpawner.SpawnTile();
             Destroy(gameObject, 2);
